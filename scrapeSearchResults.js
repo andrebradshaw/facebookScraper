@@ -59,7 +59,6 @@ function downloaded() {
     }
     return pastJob + ',' + pastEmpl + ',' + livesIn + ',' + from + ',' + eduProgram + ',' + eduInst + ',' + likes;
   }
-
   function splitAt(exp, str, n) {
     if (exp == "job") {
       var job = grp(/^.+?(?= at )/.exec(str), n);
@@ -94,7 +93,7 @@ function downloaded() {
     var sarr = url + ',' + name + ',' + title + ',' + company + ',' + bio;
     var containStr = containStr + sarr.replace(/\n|\r/g, '') + '\r';
   }
-
+var headR = "url,full_name,current_title,current_company,past_title,past_employer,lives_in,from,edu_program,edu_institution,likes\r";
   function dl(filename, text) {
     var elmi = document.createElement('a');
     elmi.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(text));
@@ -108,6 +107,6 @@ function downloaded() {
     document.body.removeChild(elmi);
   }
   var namethis = window.location.href.replace(/.+facebook\.com\//, '').replace(/\//g, '_').replace(/%20/g, '-');
-  dl(namethis + ".csv", containStr);
+  dl(namethis + ".csv", headR+containStr);
 
 }
