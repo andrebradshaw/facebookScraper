@@ -11,7 +11,8 @@ for (i = 0; i < envt; i++) {
   var don = scrolled(envt, i);
 }
 window.addEventListener("scroll", function() {
-  if (document.getElementsByClassName("phm _64f").length > 0) {
+  if (document.getElementById("browse_end_of_results_footer") != null) {
+	document.getElementById("browse_end_of_results_footer").parentElement.removeChild(document.getElementById("browse_end_of_results_footer"));
     downloaded();
   }
 });
