@@ -1,3 +1,17 @@
+var members = parseInt(/(?<=Members).+/.exec(document.getElementById("groupsMemberBrowser").innerText).toString().replace(/\D+/g, ''));
+var numScrollEventsNeeded = Math.round((members-30)/15);
+function timedScroller(num){
+setTimeout(()=>{
+window.scrollTo(0,document.body.scrollHeight);
+},num);
+}
+
+for(i=0; i<numScrollEventsNeeded; i++){
+timedScroller(i*2000);
+}
+
+function downloaded(){
+setTimeout(()=>{ 
 var members = document.getElementsByClassName("clearfix _60rh _gse");
 var containStr = '';
 for(m=10; m<20; m++){
@@ -78,3 +92,6 @@ function dl(filename, text) {
   }
 var namethis = /(?<=groups\/)\w+/.exec(window.location.href)[0];
 dl(namethis + ".csv", output);
+},(numScrollEventsNeeded*2008));
+}
+downloaded();
