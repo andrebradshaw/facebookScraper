@@ -1,10 +1,14 @@
 var members = document.getElementsByClassName("clearfix _60rh _gse");
+var containStr = '';
 for(m=10; m<20; m++){
 	var fullname = members[m].getElementsByClassName("_60ri fsl fwb fcb")[0].innerText.replace(/ −.+/, '');
 	var linky = members[m].getElementsByClassName("_60ri fsl fwb fcb")[0].getElementsByTagName("a")[0].href.replace(/\?.+/, '');
 	var otherData = parseDetails(members[m].getElementsByClassName("_60rj"));
-console.log(fullname+','+linky+','+otherData)
+	var containStr = containStr + (fullname+','+linky+','+otherData) +'\r';
 }
+
+var output = "member_name,profile_link,added_by,join_date,job_title,employer\r"+containStr;
+
 
 function grp(elm,n){if(elm != null){return elm[n].trim();}else{return '';}}
 
@@ -60,3 +64,17 @@ function parseDate(str){
 		}
 	}else{return ' '}
 }
+function dl(filename, text) {
+    var elmi = document.createElement('a');
+    elmi.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(text));
+    elmi.setAttribute('download', filename);
+
+    elmi.style.display = 'none';
+    document.body.appendChild(elmi);
+
+    elmi.click();
+
+    document.body.removeChild(elmi);
+  }
+var namethis = /(?<=groups\/)\w+/.exec(window.location.href)[0];
+dl(namethis + ".csv", output);
